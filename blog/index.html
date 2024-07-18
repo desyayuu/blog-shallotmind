@@ -10,12 +10,53 @@
     <title>Blog Template · Bootstrap v5.3</title>
 
     <link rel="canonical" href="https://getbootstrap.com/docs/5.3/examples/blog/">
-    <link rel="stylesheet" href="corousell.scss">
+    <link rel="stylesheet" href="corousel.scss">
     <link rel="stylesheet" href="../assets/dist/css/css@3.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    
+    <script>
+        $(document).ready(function(){
+            console.log("document loaded");
+        });
 
-<link href="../assets/dist/css/bootstrap.min.css" rel="stylesheet">
+
+        $(window).on("load", function(){
+            console.log("windw loaded");
+        })
+    </script>
+
+    <script>
+        $(document).ready(function(){
+          $("#about").on("mouseenter", function() {
+            $("#explanation-about").fadeIn();
+          });
+        $("#about").on("mouseleave", function() {
+            $("#explanation-about").fadeOut();
+          });
+      });
+    </script>
+    <script>
+      $(document).ready(function(){
+          $("#modal-read").hide(); 
+          $("#button-read").click(function(){
+              $("#modal-read").show().addClass('show').css('display', 'block');
+              $("body").addClass('modal-open');
+              $('<div class="modal-backdrop fade show"></div>').appendTo(document.body);
+          });
+
+          $("#close-modal").click(function(){
+              $("#modal-read").hide().removeClass('show').css('display', 'none');
+              $("body").removeClass('modal-open');
+              $(".modal-backdrop").remove();
+          });
+      });
+    </script>
+    <link href="../assets/dist/css/bootstrap.min.css" rel="stylesheet">
 
     <style>
+      #explanation-about {
+        display: none;
+      }
       .bd-placeholder-img {
         font-size: 1.125rem;
         text-anchor: middle;
@@ -234,6 +275,23 @@
       <p>Ini bukan lagi rahasia umum bahwa orang lain ga bakalan peduli sama semua proses yang kita laluin. Mereka cuma bakalan peduli sama hasil, meski kita nangis darah sekalipun. Proses itu nyatanya hanya bernilai buat diri sendiri. Niliat Kita bukan dari hasil yang kita dapet, tapi melalui proses yang udah kita lakuin</p>
     </article>
   </div>
+
+  <!-- modal -->
+  <div class="modal fade" id="modal-read" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title">Want to Read More ? </h5>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close" id="close-modal"></button>
+          </div>
+          <div class="modal-body">
+            <p>Please Subscribe Us!</p>
+          </div>
+        </div>
+    </div>
+  </div>
+
+  <!-- Card -->
   <div class="row g-5">
     <div class="col-md-8">
       <div class="container">
@@ -245,37 +303,9 @@
               <div class="card-body">
                 <h5 class="card-title">Tiny Notes for The Perfectionist</h5>
                 <p class="card-text">Ngeset standarnya tinggi, kalo ga persis sama ga dihitung. Ga dianggap. Bilangnya belum ngapa-ngapain...</p>
-                <a href="#" class="btn btn-card">Read more</a>
-              </div>
-            </div>
-          </div>
-          <div class="col-md-6">
-            <div class="card" style="margin-bottom:30px">
-              <img src="img4.jfif" class="card-img-top" alt="...">
-              <div class="card-body">
-                <h5 class="card-title">Hal yang Ga Boleh Ditawar</h5>
-                <p class="card-text">Seakrab dan sedeket apapun kalian sama orang itu, nyatanya kalian ga 24/7 bareng mereka...</p>
-                <a href="#" class="btn btn-card">Read more</a>
-              </div>
-            </div>
-          </div>
-          <div class="col-md-6">
-            <div class="card" style="margin-bottom:30px">
-              <img src="img3.jpg" class="card-img-top" alt="...">
-              <div class="card-body">
-                <h5 class="card-title">Tiny Notes for The Perfectionist</h5>
-                <p class="card-text">Ngeset standarnya tinggi, kalo ga persis sama ga dihitung. Ga dianggap. Bilangnya belum ngapa-ngapain...</p>
-                <a href="#" class="btn btn-card">Read more</a>
-              </div>
-            </div>
-          </div>
-          <div class="col-md-6">
-            <div class="card" style="margin-bottom:30px">
-              <img src="img4.jfif" class="card-img-top" alt="...">
-              <div class="card-body">
-                <h5 class="card-title">Hal yang Ga Boleh Ditawar</h5>
-                <p class="card-text">Seakrab dan sedeket apapun kalian sama orang itu, nyatanya kalian ga 24/7 bareng mereka...</p>
-                <a href="#" class="btn btn-card">Read more</a>
+                <button type="button" class="btn btn-card" id="button-read">
+                  Read More
+                </button>
               </div>
             </div>
           </div>
@@ -285,9 +315,9 @@
 
     <div class="col-md-4">
       <div class="position-sticky" style="top: 2rem;">
-        <div class="p-4 mb-3 bg-body-tertiary rounded">
-          <h4 class="fst-italic">About</h4>
-          <p class="mb-0">Secret Ingridients that can help us to reduce ignorance </p>
+        <div class="p-4 mb-3 bg-body-tertiary rounded" id="about">
+          <h4 class="fst-italic" >About</h4>
+          <p class="mb-0" id="explanation-about">Secret Ingridients that can help us to reduce ignorance </p>
         </div>
 
         <div>
